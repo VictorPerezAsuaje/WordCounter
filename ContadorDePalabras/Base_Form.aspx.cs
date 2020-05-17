@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ContadorDePalabras
 {
@@ -12,7 +13,7 @@ namespace ContadorDePalabras
 
         protected void SubmitBtn_Click(object sender, EventArgs e)
         {
-            int numeroPalabras = 0;
+            int numeroPalabras = 0, restaPalabras = 0;
             CharLblWS.Visible = false;
 
             if(TxtBox.Text == String.Empty)
@@ -23,45 +24,31 @@ namespace ContadorDePalabras
             else
             {
                 CharLblWS.Visible = true;
-                bool hayTexto = false;
+                TxtBox.Text = Regex.Replace(TxtBox.Text, @"\s+", " ");
 
-                for (int i = 1; i < TxtBox.Text.Length - 1; i++)
+                if (TxtBox.Text.Count(s => s == ' ') == TxtBox.Text.Length)
                 {
-                    if (i == 1 && TxtBox.Text[0] == ' ')
+                    WordsLbl.Text = "Word number: No words found";
+                }
+                else if (TxtBox.Text != String.Empty)
+                {
+                    if(TxtBox.Text[0] == ' ')
                     {
-                        continue;
+                        restaPalabras++;
                     }
-                    else if (TxtBox.Text[i] == ' ' && TxtBox.Text[i - 1] != ' ' && TxtBox.Text[i + 1] != ' ')
-                    {
-                        numeroPalabras++;
-                        hayTexto = true;
+                    else 
+                    { 
                     }
-                    else if (i == (TxtBox.Text.Length - 1) && TxtBox.Text[TxtBox.Text.Length] == ' ')
+                    if(TxtBox.Text[TxtBox.Text.Length-1] == ' ')
                     {
-                        continue;
-                    }
-                    else if (TxtBox.Text[i] == ' ' && TxtBox.Text[i - 1] == ' ')
-                    {
-                        continue;
+                        restaPalabras++;
                     }
                     else
                     {
-                        continue;
+
                     }
-                }
-                if (hayTexto == true)
-                {
-                    numeroPalabras++;
-                    WordsLbl.Text = "Word number: " + numeroPalabras.ToString();
-                }
-                else if(hayTexto == false && TxtBox.Text != " " && TxtBox.Text != String.Empty)
-                {
-                    numeroPalabras++;
-                    WordsLbl.Text = "Word number: " + numeroPalabras.ToString();
-                }
-                else
-                {
-                    WordsLbl.Text = "Word number: No words found.";
+                    numeroPalabras = TxtBox.Text.Count(s => s == ' ') + 1 - restaPalabras;
+                    WordsLbl.Text = "Word number: " + numeroPalabras;
                 }
                 CharLbl.Text = "Char number: " + TxtBox.Text.Length;
                 CharLblWS.Text = "Char number without spaces: " + (TxtBox.Text.Length - TxtBox.Text.Count(s => s == ' '));

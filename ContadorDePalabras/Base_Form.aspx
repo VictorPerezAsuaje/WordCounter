@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
 
-            <asp:TextBox ID="TxtBox" runat="server" class="area-cuadro-texto"></asp:TextBox>
+            <asp:TextBox ID="TxtBox" runat="server" class="area-cuadro-texto" TextMode="MultiLine"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="WordsLbl" runat="server" Text="Word number: "></asp:Label>
