@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ContadorDePalabras
 {
@@ -16,38 +12,59 @@ namespace ContadorDePalabras
 
         protected void SubmitBtn_Click(object sender, EventArgs e)
         {
-            int numeroPalabras = 0, restaPalabras = 0;
-            char[] buscadorEspacios = new char[50000];
+            int numeroPalabras = 0;
             CharLblWS.Visible = false;
 
             if(TxtBox.Text == String.Empty)
             {
                 WordsLbl.Text = "Word number: " + numeroPalabras.ToString();
-                CharLbl.Text = "Char number: " + TxtBox.Text.ToCharArray().Length;
+                CharLbl.Text = "Char number: " + TxtBox.Text.Length;
             }
             else
             {
-                buscadorEspacios = TxtBox.Text.ToCharArray();
                 CharLblWS.Visible = true;
-                for (int i = 1; i < TxtBox.Text.ToCharArray().Length; i++)
+                bool hayTexto = false;
+
+                for (int i = 1; i < TxtBox.Text.Length - 1; i++)
                 {
-                    if (i == 1 && buscadorEspacios[0] == ' ')
+                    if (i == 1 && TxtBox.Text[0] == ' ')
                     {
-                        restaPalabras++;
+                        continue;
                     }
-                    else if (buscadorEspacios[i] == ' ' && buscadorEspacios[i - 1] == ' ')
+                    else if (TxtBox.Text[i] == ' ' && TxtBox.Text[i - 1] != ' ' && TxtBox.Text[i + 1] != ' ')
                     {
-                        restaPalabras++;
+                        numeroPalabras++;
+                        hayTexto = true;
+                    }
+                    else if (i == (TxtBox.Text.Length - 1) && TxtBox.Text[TxtBox.Text.Length] == ' ')
+                    {
+                        continue;
+                    }
+                    else if (TxtBox.Text[i] == ' ' && TxtBox.Text[i - 1] == ' ')
+                    {
+                        continue;
                     }
                     else
                     {
                         continue;
                     }
                 }
-                numeroPalabras = TxtBox.Text.ToCharArray().Count(s => s == ' ') + 1 - restaPalabras;
-                WordsLbl.Text = "Word number: " + numeroPalabras.ToString();
-                CharLbl.Text = "Char number: " + TxtBox.Text.ToCharArray().Length;
-                CharLblWS.Text = "Char number without spaces: " + (TxtBox.Text.ToCharArray().Length - TxtBox.Text.ToCharArray().Count(s => s == ' '));
+                if (hayTexto == true)
+                {
+                    numeroPalabras++;
+                    WordsLbl.Text = "Word number: " + numeroPalabras.ToString();
+                }
+                else if(hayTexto == false && TxtBox.Text != " " && TxtBox.Text != String.Empty)
+                {
+                    numeroPalabras++;
+                    WordsLbl.Text = "Word number: " + numeroPalabras.ToString();
+                }
+                else
+                {
+                    WordsLbl.Text = "Word number: No words found.";
+                }
+                CharLbl.Text = "Char number: " + TxtBox.Text.Length;
+                CharLblWS.Text = "Char number without spaces: " + (TxtBox.Text.Length - TxtBox.Text.Count(s => s == ' '));
             }
             
         }
