@@ -1,0 +1,43 @@
+﻿body {
+    font-family:Abel;
+    align-content:center;
+    margin: 0;
+}
+
+.container
+{
+    width:80%;
+    margin: auto;
+    overflow:hidden;
+}
+
+#mainHeader {
+    background: #333;
+    color: #fff;
+}
+
+.form-group {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin: auto;
+}
+
+.text-box{
+    width:100%;
+    height:240px;
+    text-align:justify;
+    padding:20px;
+}
+
+h1
+{
+    font-family: Raleway;
+    font-size: 24pt;
+    text-align: center;
+}
+
+p{
+    padding: 20px;
+    margin: auto;
+}

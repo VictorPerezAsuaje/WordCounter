@@ -5,22 +5,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Word Counter</title>
-    <style type="text/css">
-        .area-cuadro-texto {
-            width: 80%;
-            height: 240px;
-        }
-    </style>
+
+    <link href="Style.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        
+
+    </script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
+    <header id="mainHeader">
+        <div class="container">
             <h1>Word counter online</h1>
+        </div>
+    </header>
+    <main>
+        <form id="form1" runat="server">
+        <div>
             <br />
         </div>
-        <div class="form-group">
-
-            <asp:TextBox ID="TxtBox" runat="server" class="area-cuadro-texto" TextMode="MultiLine"></asp:TextBox>
+        <div class="container">
+            <asp:TextBox ID="TxtBox" runat="server" CssClass ="text-box" TextMode="MultiLine" EnableTheming="False"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="SubmitBtn" runat="server" OnClick="SubmitBtn_Click" Text="Submit"/>
             <br />
             <br />
             <asp:Label ID="WordsLbl" runat="server" Text="Word number: "></asp:Label>
@@ -32,8 +40,15 @@
             <asp:Label ID="CharLblWS" runat="server" Text="Char number without spaces: "></asp:Label>
             <br />
             <br />
-        </div>
-        <asp:Button ID="SubmitBtn" runat="server" OnClick="SubmitBtn_Click" Text="Submit" />
-    </form>
+            <hr />
+            <p><i>This website has been developed by Victor Pérez Asuaje to help you count the number of words, characters and
+                characters without spaces in your text </i></p>
+            </div>
+           
+        </form>
+    </main>    
+    <footer>
+        <p> Copyright 2020. Victor Pérez Asuaje</p>
+    </footer>
 </body>
 </html>
