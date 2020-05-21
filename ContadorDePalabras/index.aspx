@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Base_Form.aspx.cs" Inherits="ContadorDePalabras.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ContadorDePalabras.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -18,6 +18,15 @@
         <div class="container">
             <h1>Word counter online</h1>
         </div>
+        <nav id="mainNav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.aspx">Contador palabras</a></li>
+                    <li><a href="https://www.victorperezasuaje.com/portfolio" target="_blank">Portfolio</a></li>
+                    <li><a href="about.aspx">About</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
     <main>
         <form id="form1" runat="server">
@@ -47,8 +56,8 @@
            
         </form>
     </main>    
-    <footer>
-        <p> Copyright 2020. Victor Pérez Asuaje</p>
+    <footer id="mainFooter">
+        <p> Copyright &copy 2020. Victor Pérez Asuaje</p>
     </footer>
 </body>
 </html>
